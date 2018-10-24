@@ -1,0 +1,21 @@
+h1 {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  background-color: #D4F3F4;
+}
+
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #58ADB7;
+  border-radius: 0.3rem;
+}

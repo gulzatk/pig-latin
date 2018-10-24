@@ -1,3 +1,5 @@
+// Business logic
+
 var vowels = ["a", "e", "i", "o", "u", "A", "E","I","O", "U"]
 
 function toPigLatin(arrays) {
@@ -27,13 +29,13 @@ function toPigLatin(arrays) {
   return output;
 }
 
+// User Interface
   $(document).ready(function(){
     $("form#form1").submit(function(event){
       event.preventDefault();
       var sentence = $("textarea#sentence").val();
       var arrays = sentence.split(" ");
       var piggy = toPigLatin(arrays);
-      console.log(piggy)
       var newArrays = piggy.join(" ");
       $("#result").text(newArrays);
 
