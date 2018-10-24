@@ -1,32 +1,41 @@
-var output = function(array) {
-  if (array.length === 1) {
-    return true;
-  } else if (array.charAt(0) === "a" || array.charAt(0) === "e" || array.charAt(0) === "i" || array.charAt(0) === "o" || array.charAt(0) === "u") {
-      return true;
+var vowels = ["a", "e", "i", "o", "u", "A", "E","I","O", "U"]
+
+function toPigLatin(arrays) {
+  var output = arrays.map(function(array) {
+    if (array.length === 1) {
+      return array + "ay";
+    }
+    else if (vowels.includes(array[0])){
+      for (i = 0; i < vowels.length; i ++) {
+        if (vowels.includes(array[i])) {
+          return array + "way";
+        }
+      }
     } else if (array.slice(0,2) === "qu") {
-        return true;
-      } else if (array.charAt(0,1) !== "a" || array.charAt(0,1) !== "e" || array.charAt(0,1) !== "i" || array.charAt(0,1) !== "o" || array.charAt(0,1) !== "u" || array.charAt(0)
-   !== "y") {
-    return true;
-  } else {
-    return false;
-  }
-};
+      return array.slice(2, array.length) + array.slice(0,2) + "ay";
 
-$(document).ready(function(){
-  $("form#form1").submit(function(event){
-    event.preventDefault();
-
-    var sentence = $("input#sentence").val();
-    var array = sentence.split(" ");
-
-    var result = output(sentence);
-
-    // for (var index = 0; index < array.length; index += 1) {
-    //   if (vowels.includes(array[index])) {break;}
-    // }
-    $("#result").text(result);
-
+    } else if (!vowels.includes(array[0])){
+      for (i = 0; i < vowels.length; i ++) {
+        if (vowels.includes(array[i])) {
+          return array.slice(i, array.length) + array.slice(0, i) + "ay";
+        }
+      }
+    } else {
+      return "Not a word";
+    }
   });
+  return output;
+}
 
-});
+  $(document).ready(function(){
+    $("form#form1").submit(function(event){
+      event.preventDefault();
+      var sentence = $("textarea#sentence").val();
+      var arrays = sentence.split(" ");
+      var piggy = toPigLatin(arrays);
+      console.log(piggy)
+      var newArrays = piggy.join(" ");
+      $("#result").text(newArrays);
+
+    });
+  });
